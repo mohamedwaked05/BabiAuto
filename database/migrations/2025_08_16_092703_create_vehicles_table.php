@@ -12,16 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('vehicles', function (Blueprint $table) {
-              $table->id('user_id');
-        $table->string('name');
-        $table->string('email')->unique();
-        $table->string('password');
-        $table->string('phone')->nullable();
-        $table->string('driver_license')->nullable();
-        $table->foreignId('role_id')->constrained('roles')->onDelete('cascade');
-        $table->timestamp('email_verified_at')->nullable();
-        $table->rememberToken();
-        $table->timestamps();
+         $table->uuid('vehicle_id')->primary(); // UUID as primary key
+            $table->string('name');
+            $table->string('model');
+            $table->string('license_plate')->unique();
+            $table->string('color')->nullable();
+             $table->enum('status', ['available', 'rented', 'maintenance', 'out_of_service'])  //Better than string
+              ->default('available');
+            $table->string('type')->nullable();
+            $table->json('features')->nullable();//better that string
+            $table->timestamps();
+
     });
     }
 
