@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('license_plate')->unique();
             $table->string('color')->nullable();
              $table->enum('status', ['available', 'rented', 'maintenance', 'out_of_service'])  //Better than string
-              ->default('available');
+            ->default('available'); // Add ->default()
             $table->string('type')->nullable();
             $table->json('features')->nullable();//better that string
             $table->timestamps();

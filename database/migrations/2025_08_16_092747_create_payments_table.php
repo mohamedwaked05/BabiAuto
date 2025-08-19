@@ -14,7 +14,7 @@ return new class extends Migration
     Schema::create('payments', function (Blueprint $table) {
         // Primary Key (UUID for distributed systems or auto-increment ID)
         $table->uuid('payment_id')->primary(); // Or `$table->id()` for auto-increment
-
+        $table->foreignUuid('user_id')->constrained('users')->onDelete('cascade');
         // Foreign Keys (with constrained relationships)
         $table->foreignUuid('vehicle_id')->constrained('vehicles')->onDelete('cascade');
         $table->foreignUuid('booking_id')->nullable()->constrained('bookings')->onDelete('set null');

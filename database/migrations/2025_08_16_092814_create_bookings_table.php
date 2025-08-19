@@ -12,7 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('bookings', function (Blueprint $table) {
-            $table->id();
+            // In bookings migration:
+            $table->uuid('booking_id')->primary();
+            $table->foreignUuid('vehicle_id')->constrained('vehicles')->onDelete('cascade');
+            $table->foreignUuid('user_id')->constrained('users')->onDelete('cascade');
+            $table->dateTime('start_date'); // Booking start time
+            $table->dateTime('end_date'); // Booking end time
+            $table->enum('status', ['pending', 'confirmed', 'cancelled', 'completed'])->default('pending'); // Booking status
             $table->timestamps();
         });
     }
