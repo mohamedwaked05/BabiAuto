@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Booking; // ← ADD THIS
+use App\Models\Booking;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
