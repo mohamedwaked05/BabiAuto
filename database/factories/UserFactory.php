@@ -23,12 +23,18 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-        return [
+              return [
+            'id' => Str::uuid(), // ← GENERATE UUID FOR ID
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+            'phone' => fake()->phoneNumber(),
+            'address' => fake()->address(),
+            'driver_license' => fake()->randomNumber(8),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 
