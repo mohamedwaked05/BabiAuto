@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('maintenances', function (Blueprint $table) {
             $table->uuid('maintenance_id')->primary(); // UUID as primary key
-            $table->foreignId('vehicle_id')->constrained('vehicles')->onDelete('cascade'); // Foreign key to vehicles
+            $table->foreignUuid('vehicle_id')->constrained('vehicles')->onDelete('cascade'); // Foreign key to vehicles
             $table->foreignUuid('user_id')->constrained('users')->onDelete('cascade');
             $table->dateTime('service_date'); // Date of maintenance service
             $table->decimal('cost');// Cost of the maintenance service
