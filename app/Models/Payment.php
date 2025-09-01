@@ -9,4 +9,5 @@ class Payment extends Model
     //First step set primary key
     //Second step set fillable attributes
     //Third step define relationships if any
+
 }
