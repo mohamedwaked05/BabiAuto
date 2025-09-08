@@ -5,6 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use App\Models\User;
+use App\Models\Vehicle;
+use App\Models\Payment;
+
 
 class Booking extends Model
 {
@@ -26,18 +31,22 @@ class Booking extends Model
     ];
 
     // Third step: define relationships
-    public function user(): BelongsTo
+     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function vehicle(): BelongsTo
     {
-        return $this->belongsTo(Vehicle::class, 'vehicle_id');
+        return $this->belongsTo(Vehicle::class, 'vehicle_id', 'vehicle_id');
     }
 
-    public function payment(): HasOne // Assuming one booking has one payment
+    // A Booking Has One Payment (UNCOMMENTED AND FIXED)
+    public function payment(): HasOne
     {
-        return $this->hasOne(Payment::class, 'booking_id');
+        // This defines that a single booking can have one payment record associated with it
+        return $this->hasOne(Payment::class, 'booking_id', 'booking_id');
+        // 'booking_id' is the foreign key in the payments table
+        // 'booking_id' is the local primary key on the bookings table
     }
 }
